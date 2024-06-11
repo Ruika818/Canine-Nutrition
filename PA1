@@ -1,0 +1,67 @@
+import React, {useState} from 'react';
+import {Text, TextInput, View, Button} from 'react-native';
+
+const Triangle = () =>{
+  const [edgeA, setEdgeA] = useState("");
+  const [edgeB, setEdgeB] = useState("");
+  const [edgeC, setEdgeC] = useState("");
+  const [area, setArea] = useState(0);
+
+  const areaCalc = () =>{
+    const a = parseFloat(edgeA);
+    const b = parseFloat(edgeB);
+    const c = parseFloat(edgeC);
+    const s = (a+b+c)/2;
+    const ar = Math.sqrt(s*(s-a)*(s-b)*(s-c));
+    setArea(ar);
+  };
+
+  return(
+    <View style={{
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center"
+    }}>
+
+      <Text style ={{marginBottom: 10, fontSize: 18}}> Triangle Area Calculator </Text>
+
+      <TextInput 
+      style = {{ padding: 10, borderWidth: 1, height: 20}}
+      value = {edgeA}
+      onChangeText = {edge => setEdgeA(edge)}
+      placeholder = "Enter edge A: "
+      keyboardType = "numeric"
+      /> 
+
+      <TextInput 
+      style = {{ padding: 10, borderWidth: 1, height: 20}}
+      value = {edgeB}
+      onChangeText = {edge => setEdgeB(edge)}
+      placeholder = "Enter edge B: "
+      keyboardType = "numeric"
+      /> 
+
+      <TextInput 
+      style = {{ padding: 10, borderWidth: 1, height: 20}}
+      value = {edgeC}
+      onChangeText = {edge => setEdgeC(edge)}
+      placeholder = "Enter edge C: "
+      keyboardType = "numeric"
+      /> 
+
+      <Button
+      title = "Calculate Area"
+      onPress={areaCalc}
+      />
+
+      <Text> Area: {area - area%0.01}</Text>
+
+
+    </View>
+  );
+
+};
+
+
+
+export default Triangle;
